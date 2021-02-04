@@ -66,6 +66,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         http
                 .csrf()
                     .disable()
+
                 .authorizeRequests()
 
                     .antMatchers("/", "/index", "/bootstrap/**", "/jquery/**").permitAll()
@@ -93,7 +94,6 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/")
                     .logoutSuccessHandler(logoutSuccessHandler())
                     .permitAll()
-
 
                 .and()
                     .exceptionHandling()
