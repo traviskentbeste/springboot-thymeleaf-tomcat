@@ -82,7 +82,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .permitAll()
                     .failureHandler(customAuthenticationFailureHandler)
-                    .defaultSuccessUrl("/", true)
+                    .defaultSuccessUrl("/index", true)
 
                 .and()
 
