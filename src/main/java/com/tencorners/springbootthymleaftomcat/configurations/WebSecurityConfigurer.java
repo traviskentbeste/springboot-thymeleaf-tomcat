@@ -4,6 +4,7 @@ import com.tencorners.springbootthymleaftomcat.handlers.CustomAccessDeniedHandle
 import com.tencorners.springbootthymleaftomcat.handlers.CustomAuthenticationFailureHandler;
 import com.tencorners.springbootthymleaftomcat.handlers.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,6 +25,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+
+    //@Value("${hostname}")
+    //private String hostname;
 
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
@@ -82,7 +86,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .permitAll()
                     .failureHandler(customAuthenticationFailureHandler)
-                    .defaultSuccessUrl("/index", true)
+                    .defaultSuccessUrl("/index")
 
                 .and()
 
