@@ -26,8 +26,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    //@Value("${hostname}")
-    //private String hostname;
+    @Value("${hostname}")
+    private String hostname;
 
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
@@ -86,7 +86,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .permitAll()
                     .failureHandler(customAuthenticationFailureHandler)
-                    .defaultSuccessUrl("/index")
+                    .defaultSuccessUrl("http://" + hostname + "/index")
+
 
                 .and()
 
