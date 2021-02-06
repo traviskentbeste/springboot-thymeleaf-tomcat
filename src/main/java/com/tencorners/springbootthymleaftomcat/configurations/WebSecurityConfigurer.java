@@ -26,7 +26,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    @Value("${hostname}")
+    @Value("${hostname_test}")
     private String hostname;
 
     @Bean
@@ -69,7 +69,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         System.out.println("hostname is " + hostname);
-        
+
         http
                 .csrf()
                     .disable()
