@@ -11,6 +11,11 @@ public class AuthenticationController {
         return "authentication/login";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/index";
+    }
+
     @GetMapping("/authentication/user")
     public String userStatusCheck() {
         return "authentication/user";
