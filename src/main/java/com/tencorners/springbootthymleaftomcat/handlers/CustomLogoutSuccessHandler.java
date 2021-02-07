@@ -26,7 +26,7 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
         User user = (User) authentication.getPrincipal();
         System.out.println("'" + user.getUsername() + "' just logged out");
 
-        super.onLogoutSuccess(request, response, authentication);
+        //super.onLogoutSuccess(request, response, authentication);
     }
 
 }
