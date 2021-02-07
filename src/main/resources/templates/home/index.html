@@ -10,7 +10,7 @@
 
     <div class="row mt-5">
         <div class="col-12 text-center">
-            <h1><a th:href="@{/index}">springboot-thymeleaf-tomcat</a></h1>
+            <h1><a th:href="@{~/index}">springboot-thymeleaf-tomcat</a></h1>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
                             <li><b>manager</b>/<i>manager</i> - log in as a manager and have user,manager roles</li>
                         </ul>
                     </p>
-                    <a th:href="@{/login}" class="mt-auto btn btn btn-primary">Let's go!</a>
+                    <a th:href="@{~/login}" class="mt-auto btn btn btn-primary">Let's go!</a>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">user</h5>
                     <p class="card-text">We'll have you log in as a user and see the user page</p>
-                    <a th:href="@{/authentication/user}" class="mt-auto btn btn-secondary">user check</a>
+                    <a th:href="@{~/authentication/user}" class="mt-auto btn btn-secondary">user check</a>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">admin</h5>
                     <p class="card-text">Alternatively, we'll have you log in as an admin.</p>
-                    <a th:href="@{/authentication/admin}" class="mt-auto btn btn-secondary">admin check</a>
+                    <a th:href="@{~/authentication/admin}" class="mt-auto btn btn-secondary">admin check</a>
                 </div>
             </div>
         </div>
