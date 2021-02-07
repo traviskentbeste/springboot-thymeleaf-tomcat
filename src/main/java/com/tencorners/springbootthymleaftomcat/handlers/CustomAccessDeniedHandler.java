@@ -32,7 +32,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
             );
         }
 
-        response.sendRedirect(request.getContextPath() + "/access-denied");
+        response.sendRedirect("http://vendingtestingandrepair.com/access-denied");
     }
 
 }
