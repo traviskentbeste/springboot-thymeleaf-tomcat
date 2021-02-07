@@ -26,9 +26,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
-    @Value("${hostname_test}")
-    private String hostname;
-
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
         return new CustomAccessDeniedHandler();
@@ -68,8 +65,6 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        System.out.println("hostname is " + hostname);
-
         http
                 .csrf()
                     .disable()
@@ -89,7 +84,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .permitAll()
                     .failureHandler(customAuthenticationFailureHandler)
-                    .defaultSuccessUrl("http://" + hostname + "/index")
+                    .defaultSuccessUrl("/index")
 
 
                 .and()
