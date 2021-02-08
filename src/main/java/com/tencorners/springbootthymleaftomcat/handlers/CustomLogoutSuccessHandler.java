@@ -1,5 +1,6 @@
 package com.tencorners.springbootthymleaftomcat.handlers;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
@@ -12,11 +13,12 @@ import java.io.IOException;
 
 public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
 
+    @Value("${logoutSuccessURL}")
+    private String logoutSuccessURL;
+
     public CustomLogoutSuccessHandler() {
         super();
     }
-
-    // API
 
     @Override
     public void onLogoutSuccess(final HttpServletRequest request, final HttpServletResponse response, final Authentication authentication) throws IOException, ServletException {
@@ -26,7 +28,10 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
         User user = (User) authentication.getPrincipal();
         System.out.println("'" + user.getUsername() + "' just logged out");
 
-        super.onLogoutSuccess(request, response, authentication);
+        System.out.printf("logoutSuccessURL : " + logoutSuccessURL);
+        response.sendRedirect(logoutSuccessURL);
+
+        //super.onLogoutSuccess(request, response, authentication);
     }
 
 }

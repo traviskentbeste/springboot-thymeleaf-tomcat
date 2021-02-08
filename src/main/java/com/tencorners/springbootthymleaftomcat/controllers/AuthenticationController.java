@@ -26,7 +26,7 @@ public class AuthenticationController {
         return "authentication/admin";
     }
 
-    @GetMapping("/access-denied")
+    @GetMapping("/authentication/access-denied")
     public String accessDenied() {
         return "authentication/access-denied";
     }

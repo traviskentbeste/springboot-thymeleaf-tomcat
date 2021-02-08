@@ -3,6 +3,7 @@ package com.tencorners.springbootthymleaftomcat.handlers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
+
+    @Value("${accessDeniedURL}")
+    private String accessDeniedURL;
 
     public static final Logger LOG = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
 
@@ -32,7 +36,8 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
             );
         }
 
-        response.sendRedirect("http://vendingtestingandrepair.com/access-denied");
+        System.out.println("accessDeniedURL : " + accessDeniedURL);
+        response.sendRedirect(accessDeniedURL);
     }
 
 }

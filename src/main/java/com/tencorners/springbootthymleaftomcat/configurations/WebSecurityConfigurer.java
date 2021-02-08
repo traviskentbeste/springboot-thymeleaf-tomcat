@@ -13,18 +13,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+
+    @Value("${loginSuccessURL}")
+    private String loginSuccessURL;
 
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
@@ -36,6 +36,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler() {
+        System.out.println("logoutSuccessHandler getting called");
         return new CustomLogoutSuccessHandler();
     }
 
@@ -84,7 +85,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .permitAll()
                     .failureHandler(customAuthenticationFailureHandler)
-                    .defaultSuccessUrl("http://vendingtestingandrepair.com/index")
+                    .defaultSuccessUrl(loginSuccessURL)
 
 
                 .and()
@@ -96,7 +97,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .logoutUrl("/logout")
                     .deleteCookies("JSESSIONID")
                     .invalidateHttpSession(true)
-                    .logoutSuccessUrl("http://vendingtestingandrepair.com/index1")
+                    // .logoutSuccessUrl("/index") // handled by the logoutSuccessHandler()
                     .logoutSuccessHandler(logoutSuccessHandler())
                     .permitAll()
 
