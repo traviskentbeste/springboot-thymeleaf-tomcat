@@ -16,9 +16,6 @@ import java.io.IOException;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
-    @Value("${accessDeniedURL}")
-    private String accessDeniedURL;
-
     public static final Logger LOG = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
 
     @Override
@@ -36,8 +33,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
             );
         }
 
-        System.out.println("accessDeniedURL : " + accessDeniedURL);
-        response.sendRedirect(accessDeniedURL);
+        response.sendRedirect("/authentication/access-denied");
     }
 
 }

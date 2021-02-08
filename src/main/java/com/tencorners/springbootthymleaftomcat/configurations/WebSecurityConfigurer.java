@@ -4,7 +4,6 @@ import com.tencorners.springbootthymleaftomcat.handlers.CustomAccessDeniedHandle
 import com.tencorners.springbootthymleaftomcat.handlers.CustomAuthenticationFailureHandler;
 import com.tencorners.springbootthymleaftomcat.handlers.CustomLogoutSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,9 +21,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
-
-    @Value("${loginSuccessURL}")
-    private String loginSuccessURL;
 
     @Bean
     public AccessDeniedHandler accessDeniedHandler(){
@@ -85,7 +81,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .permitAll()
                     .failureHandler(customAuthenticationFailureHandler)
-                    .defaultSuccessUrl(loginSuccessURL)
+                    .defaultSuccessUrl("/index")
 
 
                 .and()
@@ -97,7 +93,6 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .logoutUrl("/logout")
                     .deleteCookies("JSESSIONID")
                     .invalidateHttpSession(true)
-                    // .logoutSuccessUrl("/index") // handled by the logoutSuccessHandler()
                     .logoutSuccessHandler(logoutSuccessHandler())
                     .permitAll()
 

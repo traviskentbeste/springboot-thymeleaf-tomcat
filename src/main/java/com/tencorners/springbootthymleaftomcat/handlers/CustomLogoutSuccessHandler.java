@@ -13,9 +13,6 @@ import java.io.IOException;
 
 public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler implements LogoutSuccessHandler {
 
-    @Value("${logoutSuccessURL}")
-    private String logoutSuccessURL;
-
     public CustomLogoutSuccessHandler() {
         super();
     }
@@ -28,10 +25,7 @@ public class CustomLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler im
         User user = (User) authentication.getPrincipal();
         System.out.println("'" + user.getUsername() + "' just logged out");
 
-        System.out.printf("logoutSuccessURL : " + logoutSuccessURL);
-        response.sendRedirect(logoutSuccessURL);
-
-        //super.onLogoutSuccess(request, response, authentication);
+        super.onLogoutSuccess(request, response, authentication);
     }
 
 }
