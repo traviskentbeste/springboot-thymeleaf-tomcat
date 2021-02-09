@@ -18,17 +18,19 @@ public class AuthenticationController {
         HttpSession session = request.getSession(false);
         System.out.printf("session : " + session);
         String errorMessage = null;
+
+        Integer hasErrors = 0;
         if (session != null) {
             AuthenticationException ex = (AuthenticationException) session.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
             System.out.printf("ex : " + ex + "\n");
-            System.out.printf("ex : " + ex.getMessage() + "\n");
-
-            model.addAttribute("hasErrors", 1);
-            model.addAttribute("errorMessage", ex.getMessage());
-        } else {
-            model.addAttribute("hasErrors", 0);
+            if (ex != null) {
+                System.out.printf("ex : " + ex.getMessage() + "\n");
+                errorMessage = ex.getMessage();
+                hasErrors++;
+            }
         }
-
+        model.addAttribute("hasErrors", hasErrors);
+        model.addAttribute("errorMessage", errorMessage);
         return "authentication/login";
     }
 
