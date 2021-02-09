@@ -20,7 +20,11 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        LOG.warn("login failure: username:" + username + " password:" + password);
+
+        LOG.warn("login failure : " + username + "/" + password);
+        System.out.println("login failure       : " + username + "/" + password);
+        System.out.println("exception message   : " + exception.getMessage());
+
         String redirectURL = "/login?error";
         super.setDefaultFailureUrl(redirectURL);
         super.onAuthenticationFailure(request, response, exception);
